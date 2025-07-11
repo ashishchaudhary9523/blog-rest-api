@@ -25,4 +25,13 @@ public class Post {
     @Column(name="content" , nullable = false)
     private String content;
 
+    @Column(name="image_name")
+    private String imageName;
+    @Column(name="image_type")
+    private String imageType;
+
+    @Lob
+    @Column(name="image_data")
+    private byte[] imageData;
+
 }

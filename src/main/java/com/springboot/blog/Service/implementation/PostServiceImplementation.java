@@ -50,6 +50,9 @@ public class PostServiceImplementation implements PostService {
         post.setTitle(postDTO.getTitle());
         post.setDescription(postDTO.getDescription());
         post.setContent(postDTO.getContent());
+        post.setImageName(postDTO.getImageName());
+        post.setImageType(postDTO.getImageType());
+        post.setImageData(postDTO.getImageData());
         Post updatedPost = postRepository.save(post);
         return mapToPostDTO(updatedPost);
     }
@@ -67,6 +70,9 @@ public class PostServiceImplementation implements PostService {
         post.setTitle(postDTO.getTitle());
         post.setDescription(postDTO.getDescription());
         post.setContent(postDTO.getContent());
+        post.setImageName(postDTO.getImageName());
+        post.setImageType(postDTO.getImageType());
+        post.setImageData(postDTO.getImageData());
         return post;
     }
 
@@ -77,6 +83,9 @@ public class PostServiceImplementation implements PostService {
         postDTO.setTitle(post.getTitle());
         postDTO.setDescription(post.getDescription());
         postDTO.setContent(post.getContent());
+        postDTO.setImageName(post.getImageName());
+        postDTO.setImageType(post.getImageType());
+        postDTO.setImageData(post.getImageData());
         return postDTO;
     }
 }
