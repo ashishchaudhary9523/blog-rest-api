@@ -1,0 +1,13 @@
+org.springframework.boot:spring-boot-starter-data-jpa:N/A
+org.springframework.boot:spring-boot-starter-web:N/A
+org.springframework.boot:spring-boot-devtools:N/A
+org.postgresql:postgresql:N/A
+org.projectlombok:lombok:N/A
+org.springframework.boot:spring-boot-starter-test:N/A
+org.springframework.boot:spring-boot-starter-validation:N/A
+org.springframework.boot:spring-boot-starter-security:N/A
+io.jsonwebtoken:jjwt:0.9.1
+javax.xml.bind:jaxb-api:2.3.1
+com.sun.xml.bind:jaxb-impl:2.3.1
+org.glassfish.jaxb:jaxb-runtime:2.3.1
+org.springframework.security:spring-security-test:N/A
