@@ -19,4 +19,8 @@ public class BlogAPIException extends RuntimeException {
         this.name = message2;
     }
 
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
 }

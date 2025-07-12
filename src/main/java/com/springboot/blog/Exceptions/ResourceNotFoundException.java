@@ -20,4 +20,8 @@ public class ResourceNotFoundException extends RuntimeException {
         this.fieldValue = fieldValue;
     }
 
+    @Override
+    public String getMessage() {
+        return super.getMessage();
+    }
 }

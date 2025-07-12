@@ -2,10 +2,12 @@ package com.springboot.blog.Controller;
 
 import com.springboot.blog.Service.PostService;
 import com.springboot.blog.payload.PostDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,8 +24,9 @@ public class PostController {
         this.postService = postService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value="/create" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<PostDTO> createPost(@RequestPart PostDTO postDTO , @RequestPart MultipartFile image) {
+    public ResponseEntity<PostDTO> createPost(@Valid @RequestPart PostDTO postDTO , @RequestPart MultipartFile image) {
         if(!image.isEmpty()) {
             try {
                 postDTO.setImageName(image.getOriginalFilename());
@@ -56,8 +59,9 @@ public class PostController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value="/update-post/{id}")
-    public ResponseEntity<PostDTO> updatePost1(@RequestBody PostDTO postDTO , @PathVariable(name="id") Long id){
+    public ResponseEntity<PostDTO> updatePost1(@Valid @RequestBody PostDTO postDTO , @PathVariable(name="id") Long id){
         PostDTO updatedPost = postService.updatePost(postDTO , id);
         if(updatedPost != null) {
             return new ResponseEntity<>(updatedPost , HttpStatus.OK);
@@ -66,8 +70,9 @@ public class PostController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value="/update-post-image/{id}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<PostDTO> updatePost2(@PathVariable Long id, @RequestPart MultipartFile image ){
+    public ResponseEntity<PostDTO> updatePost2(@Valid @PathVariable Long id, @RequestPart MultipartFile image ){
         PostDTO updatedPost = null;
         updatedPost = postService.updatePostWithImage(id , image);
         if(updatedPost != null) {
@@ -77,6 +82,7 @@ public class PostController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete-post/{id}")
     public ResponseEntity<?> deletePostById(@PathVariable(name="id") Long id){
         PostDTO deletedPost = postService.deletePostById(id);
