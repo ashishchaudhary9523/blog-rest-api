@@ -56,18 +56,20 @@ public class PostController {
         }
     }
 
-    @PutMapping(value="/update-post/{id}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<PostDTO> updatePost(@RequestBody PostDTO postDTO , @RequestPart MultipartFile image , @PathVariable(name="id") Long id){
-        if(!image.isEmpty()) {
-            try {
-                postDTO.setImageName(image.getOriginalFilename());
-                postDTO.setImageType(image.getContentType());
-                postDTO.setImageData(image.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    @PutMapping(value="/update-post/{id}")
+    public ResponseEntity<PostDTO> updatePost1(@RequestBody PostDTO postDTO , @PathVariable(name="id") Long id){
         PostDTO updatedPost = postService.updatePost(postDTO , id);
+        if(updatedPost != null) {
+            return new ResponseEntity<>(updatedPost , HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping(value="/update-post-image/{id}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<PostDTO> updatePost2(@PathVariable Long id, @RequestPart MultipartFile image ){
+        PostDTO updatedPost = null;
+        updatedPost = postService.updatePostWithImage(id , image);
         if(updatedPost != null) {
             return new ResponseEntity<>(updatedPost , HttpStatus.OK);
         } else {
