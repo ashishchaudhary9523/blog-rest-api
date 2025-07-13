@@ -105,4 +105,4 @@ Contributions are welcome! Feel free to fork the repo and submit a PR.
 
 ## ✨ Author
 
-- **Ashish** — [GitHub Profile](https://github.com/the-hunter-web)
+- **Ashish** — [GitHub Profile](https://github.com/ashishchaudhary9523)
